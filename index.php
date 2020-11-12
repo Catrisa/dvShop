@@ -1,23 +1,48 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <title>Parcial 2</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
+session_start();
+
+require_once "./config/db.php";
+require_once "./config/parameters.php";
+require_once "./autoload.php";
+require_once "./helpers/Utils.php";
+
+// Para pruebas
+require_once "models/Categoria.php";
+require_once "models/Usuario.php";
+
+require_once "views/layout/header.php";
+?>
 
 
 
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+  <?php
+
+  if (isset($_GET["controller"])) {
+    $nombre_controlador = $_GET["controller"] . "Controller";
+  }else{
+    $nombre_controlador = controller_default;
+  }
+
+  if (class_exists($nombre_controlador)) {
+
+    $controlador = new $nombre_controlador();
+
+    if (isset($_GET["action"]) && method_exists($controlador, $_GET["action"])) {
+      $action = $_GET["action"];
+      $controlador->$action();
+    } elseif (!isset($_GET["controller"]) && !isset($_GET["action"])) {
+      $action_default = action_default;
+      $controlador->$action_default();
+    } else {
+      echo "El action que estas buscando no existe";
+    }
+  } else {
+    echo "El controlador que estas buscando no existe";
+  }
+  ?>
+
+
+
+
+<?php require_once "views/layout/footer.php" ?>
