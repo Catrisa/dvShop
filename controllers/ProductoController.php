@@ -28,6 +28,7 @@ class ProductoController{
         
     }
 
+    // Mostrar por categoria
     function getForCategoria(){
         
     }
@@ -199,7 +200,7 @@ class ProductoController{
         $delete = $producto->delete();
         if($delete){
             $_SESSION["delete"]["flag"] = true;
-            $_SESSION["delete"]["message"] = "Producto eliminado con exito!";
+            $_SESSION["delete"]["message"] = "Se ha eliminado un producto!";
             // Borro el archivo de uploads/images
             
             unlink(__DIR__."/../uploads/images/".$nameImg);
