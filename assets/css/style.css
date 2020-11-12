@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+textarea {
+    resize: none;
+}
+
+/* ~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~ */
+header h2{
+    padding: 15px 0;
+}
+header div.container{
+    text-align: right;
+    margin-top: 10px;
+}
+header div.container a{
+    color: rgb(120, 120, 120);
+}
+
+/* ~~~~~~~~~~~~ NAV ~~~~~~~~~~~~ */
+nav{
+    position: sticky!important;
+    top: 0;
+    z-index: 99;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.a-navBar{
+    font-size: 17px;
+    margin-left: 20px;
+}
+
+/* INDEX DE PRODUCTO CONTROLLER */
+.title-productos{
+    font-size: 30px;
+}
+.precio-productos{
+    font-weight: 500;
+}
+
+.card-img{
+    
+}
