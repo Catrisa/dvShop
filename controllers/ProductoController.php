@@ -5,7 +5,7 @@ require_once __DIR__ . "/../helpers/Utils.php";
 
 class ProductoController{
 
-    function index(){
+    public function index(){
         if(Utils::isAdmin()){
             header("Location: ".base_url."index.php?controller=producto&action=getAll");
         }else{
@@ -16,7 +16,7 @@ class ProductoController{
         }
     }
 
-    function getAll(){
+    public function getAll(){
         if( !Utils::isAdmin() ){
             Utils::notIsAdmin();
         }
@@ -29,11 +29,11 @@ class ProductoController{
     }
 
     // Mostrar por categoria
-    function getForCategoria(){
+    public function getForCategoria(){
         
     }
 
-    function create(){
+    public function create(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
         }
@@ -49,7 +49,7 @@ class ProductoController{
         require_once __DIR__ . "/../views/producto/crear.php";
     }
 
-    function save(){
+    public function save(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
         }
@@ -104,7 +104,7 @@ class ProductoController{
         }
     }
     
-    function edit(){
+    public function edit(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
         }
@@ -113,7 +113,7 @@ class ProductoController{
         
     }
 
-    function update(){
+    public function update(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
         }
@@ -186,7 +186,7 @@ class ProductoController{
 
     } 
     
-    function delete(){
+    public function delete(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
         }

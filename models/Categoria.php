@@ -9,20 +9,20 @@ class Categoria {
 
     private $db;
 
-    function __construct(){
+    public function __construct(){
         $this->db = DataBase::conexion();
     }
 
     /* SETTERS */
-    function setId($id){
+    public function setId($id){
         $this->id = $id;
     }
     
-    function setNombre($nombre){
+    public function setNombre($nombre){
         $this->nombre = $nombre;
     }
 
-    function getAll(){
+    public function getAll(){
         $sql = "SELECT * FROM categoria";   
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -30,7 +30,7 @@ class Categoria {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function save(){
+    public function save(){
         $sql = "INSERT INTO categoria VALUES(null, :nombre)";
         $query = $this->db->prepare($sql);
         $save = $query->execute([
@@ -41,7 +41,7 @@ class Categoria {
         return $result;
     }
 
-    function delete(){
+    public function delete(){
         $sql = "DELETE FROM categoria WHERE id = :id";
         $query = $this->db->prepare($sql);
         $save = $query->execute([

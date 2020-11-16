@@ -13,31 +13,31 @@ class Usuario{
 
     private $db;
     
-    function __construct(){
+    public function __construct(){
         $this->db = DataBase::conexion();
     }
 
     /* SETTERS */
-    function setId($id){
+    public function setId($id){
         $this->id = $id ;
     }
-    function setNombre($nombre){
+    public function setNombre($nombre){
         $this->nombre = $nombre;
     }
-    function setApellido($apellido){
+    public function setApellido($apellido){
         $this->apellido = $apellido;
     }
-    function setEmail($email){
+    public function setEmail($email){
         $this->email = $email;
     }
-    function setPassword($password){
+    public function setPassword($password){
         $this->password = $password;
     }
-    function setRol($rol){
+    public function setRol($rol){
         $this->rol = $rol ;
     }
     
-    function save(){
+    public function save(){
         $sql = "INSERT INTO usuario VALUES(null,:nombre,:apellido,:email,:pass,:rol)";
         $query = $this->db->prepare($sql);
         $resultado = $query->execute([
@@ -52,7 +52,7 @@ class Usuario{
         return $resultado;
     }
 
-    function login(){            
+    public function login(){            
         $email = $this->email;
         $password = $this->password;
         

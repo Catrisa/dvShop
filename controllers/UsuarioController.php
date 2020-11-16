@@ -4,15 +4,15 @@ require_once __DIR__ . "/../models/Usuario.php";
 
 class UsuarioController {
 
-    function index(){
+    public function index(){
         echo "<h1>Index de UsuarioController</h1>";
     }
     
-    function registro(){
+    public function registro(){
         require_once __DIR__ . "/../views/usuario/registro.php";
     }
 
-    function save(){
+    public function save(){
         if( isset($_POST["submitRegistro"]) ){
             $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : false;
             $apellido = isset($_POST["apellido"]) ? $_POST["apellido"] : false;
@@ -54,11 +54,11 @@ class UsuarioController {
 
     }
 
-    function login(){
+    public function login(){
         require_once __DIR__ . "/../views/usuario/login.php";
     }
 
-    function procesarLogin(){
+    public function procesarLogin(){
         $email = $_POST["email"];
         $clave = $_POST["password"];
 
@@ -83,7 +83,7 @@ class UsuarioController {
         }
     }
 
-    function logOut(){
+    public function logOut(){
         // Eliminar variables de usuario
         if( isset($_SESSION["identity"]) ){
             unset($_SESSION["identity"]);

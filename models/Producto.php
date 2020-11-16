@@ -18,40 +18,40 @@ class Producto{
     }
 
     /* SETTERS */
-    function setId($id){
+    public function setId($id){
         $this->id = $id;
     }
-    function setNombre($nombre){
+    public function setNombre($nombre){
         $this->nombre = $nombre;
     }
-    function setPrecio($precio){
+    public function setPrecio($precio){
         $this->precio = $precio;
     }
-    function setDescripcion($descripcion){
+    public function setDescripcion($descripcion){
         $this->descripcion = $descripcion;
     }
-    function setImagen($imagen){
+    public function setImagen($imagen){
         $this->imagen = $imagen;
     }
-    function setCategoriaId($categoria_id){
+    public function setCategoriaId($categoria_id){
         $this->categoria_id = $categoria_id;
     }
 
-    function getRandom($limit){
+    public function getRandom($limit){
         $sql = "SELECT * FROM producto ORDER BY RAND() LIMIT $limit";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getAll(){
+    public function getAll(){
         $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getForCategoria(){
+    public function getForCategoria(){
         $sql = "SELECT * FROM producto ORDER BY RAND() WHERE categoria_id = :categoria";
         $query = $this->db->prepare($sql);
         $query->execute([
@@ -60,7 +60,7 @@ class Producto{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getOne(){
+    public function getOne(){
         $sql = "SELECT * FROM producto WHERE id = :id";
         $query = $this->db->prepare($sql);
         $query->execute([
@@ -69,7 +69,7 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    function save(){
+    public function save(){
         $sql = "INSERT INTO producto VALUES(null, :nombre,:precio,:descripcion,:imagen,:categoria)";
         $query = $this->db->prepare($sql);
         $save = $query->execute([
@@ -83,7 +83,7 @@ class Producto{
         return $save;
     }
 
-    function update($newImg = true){
+    public function update($newImg = true){
         
         if($newImg){
             $sql = "UPDATE producto SET nombre = :nombre, precio = :precio, descripcion = :descripcion, imagen = :imagen, categoria_id = :categoria WHERE id = :id";
@@ -111,7 +111,7 @@ class Producto{
         return $update;
     }
 
-    function delete(){
+    public function delete(){
         $sql = "DELETE FROM producto WHERE id = :id";
         $query = $this->db->prepare($sql);
         $delete = $query->execute([
