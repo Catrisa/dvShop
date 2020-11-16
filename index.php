@@ -1,20 +1,15 @@
 <?php
 
-session_start();
+  session_start();
 
-require_once "./config/db.php";
-require_once "./config/parameters.php";
-require_once "./autoload.php";
-require_once "./helpers/Utils.php";
+  require_once "./config/db.php";
+  require_once "./config/parameters.php";
+  require_once "./autoload.php";
+  require_once "./helpers/Utils.php";
 
-// Para pruebas
-require_once "models/Categoria.php";
-require_once "models/Usuario.php";
-
-require_once "views/layout/header.php";
+  // HEADER
+  require_once "views/layout/header.php";
 ?>
-
-
 
   <?php
 
@@ -25,7 +20,6 @@ require_once "views/layout/header.php";
   }
 
   if (class_exists($nombre_controlador)) {
-
     $controlador = new $nombre_controlador();
 
     if (isset($_GET["action"]) && method_exists($controlador, $_GET["action"])) {
@@ -45,4 +39,7 @@ require_once "views/layout/header.php";
 
 
 
-<?php require_once "views/layout/footer.php" ?>
+<?php 
+  // FOOTER
+  require_once "views/layout/footer.php" 
+?>
