@@ -72,7 +72,7 @@ class UsuarioController {
         if($resultadoLogin){
             $_SESSION["identity"] = $resultadoLogin;
             $_SESSION["login"]["flag"] = true;
-            $_SESSION["login"]["message"] = "Bienvenido ".$resultadoLogin->nombre." ".$resultadoLogin->apellido."!" ;
+            $_SESSION["login"]["message"] = "Bienvenido ".ucfirst($resultadoLogin->nombre)." ".ucfirst($resultadoLogin->apellido)."!" ;
 
             header("Location: ".base_url."index.php?controller=producto&action=index");
         }else{

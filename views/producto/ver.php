@@ -15,7 +15,7 @@
         }
         if( isset($_SESSION["login"]) && $_SESSION["login"]["flag"] ){
             echo '<div class="col-12">';
-                echo Utils::alert($_SESSION["login"]["message"],"Tiene permisos de Administrador");
+                echo Utils::alert($_SESSION["login"]["message"],"Tenes permisos de Administrador");
             echo '</div>';
             unset ($_SESSION["login"]);
         }
@@ -42,25 +42,29 @@
         </div>
 
         <div class="col-12">
-        <table class="table table-hover table-bordered">
+        <table class="table table-striped tabla-lista-productos">
             <thead>
                 <tr>
+                    <th class="d-none d-md-block ">Imagen</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th class="d-none d-md-block" >Categoria</th>
+                    <th class="d-none d-md-block">Categoria</th>
                     <th colspan="2" class="text-center">Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($productos as $producto): ?>
-                    <tr>
-                        <td><?=ucfirst($producto->nombre)?></td>
-                        <td><?=ucfirst($producto->precio)?></td>
-                        <td class="d-none d-md-block "><?=$producto->categoria?></td>
-                        <td>
+                    <tr class="tr-lista-productos">
+                        <td class="align-middle text-center d-none d-md-block ">
+                            <img src="<?=base_url."uploads/images/".$producto->imagen?>" alt="<?=$producto->nombre?>" class="img-fluid img-lista-productos">
+                        </td>
+                        <td class="align-middle text-center"><?=ucfirst($producto->nombre)?></td>
+                        <td class="align-middle text-center"><?=ucfirst($producto->precio)?></td>
+                        <td class="align-middle text-center d-none d-md-block "><?=$producto->categoria?></td>
+                        <td class="align-middle text-center">
                             <a class="btn btn-primary btn-block" href="<?=base_url.'index.php?controller=producto&action=edit&id='.$producto->id?>"><i class="fas fa-marker"></i></a>
                         </td>
-                        <td>
+                        <td class="align-middle text-center">
                             <a class="btn btn-danger btn-block" href="<?=base_url.'index.php?controller=producto&action=delete&id='.$producto->id?>"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>

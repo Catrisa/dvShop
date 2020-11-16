@@ -44,6 +44,19 @@ nav{
     font-weight: 500;
 }
 
-.card-img{
-    
+.img-lista-productos{
+    height: 150px;
+    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.tr-lista-productos > td{
+    border: none;
+}
+.tabla-lista-productos{
+    border: 1px solid #ddd;
+}
+.tabla-lista-productos thead th{
+    text-align: center;
+    border: none!important;
 }
