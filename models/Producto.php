@@ -69,6 +69,13 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function search(){
+        $sql = "SELECT * FROM producto WHERE nombre LIKE '{$this->nombre}%' ";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function save(){
         $sql = "INSERT INTO producto VALUES(null, :nombre,:precio,:descripcion,:imagen,:categoria)";
         $query = $this->db->prepare($sql);

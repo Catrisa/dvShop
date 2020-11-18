@@ -11,7 +11,13 @@
         }
         unset($_SESSION["acceso"]);
     }
+    if( isset($buscador) && $buscador ){
+        $titulo = empty($productos) ? "No se encontraron productos" : "Productos encontrados";
+        echo '<h3 class="mb-4 display-4 pb-3">'.$titulo.'</h3>';
+    }
     ?>
+
+    
 
     <div class="row">
         <?php foreach($productos as $producto):?>

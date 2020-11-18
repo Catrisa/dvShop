@@ -40,6 +40,21 @@ class ProductoController{
         require_once __DIR__ . "/../views/producto/destacados.php";
     }
 
+    public function search(){
+        if( isset($_POST["submitBuscador"]) ){
+            $nombreProducto = $_POST["producto"];
+
+            $producto = new Producto();
+            $producto->setNombre($nombreProducto);
+            $productos = $producto->search();
+            
+            $buscador = true;
+            
+            require_once __DIR__ . "/../views/producto/destacados.php";
+            
+        }
+    }
+
     public function create(){
         if(!Utils::isAdmin()){
             Utils::notIsAdmin();
