@@ -30,7 +30,7 @@
         <a href="<?= base_url . 'index.php?controller=usuario&action=logOut' ?>"><i class="fas fa-sign-out-alt"></i></a>
       </div>
     <?php endif; ?>
-    <h2 class="display-3 text-center">Tienda</h2>
+    <h2 class="display-2 text-center"><a href="<?=base_url?>" class="titulo-tienda">Tienda</a></h2>
   </header>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,23 +49,11 @@
           if(!Utils::isAdmin()): 
             foreach (Utils::showCategorias() as $categoria) : ?>
               <li class="nav-item">
-                <a class="nav-link a-navBar" href="#"><?= $categoria->nombre ?></a>
+                <a class="nav-link a-navBar" href="<?=base_url."index.php?controller=producto&action=getForCategoria&categoria=".$categoria->id?>"><?= $categoria->nombre ?></a>
               </li>
           <?php 
             endforeach; 
           endif; ?>
-
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li> -->
 
         </ul>
       </div>

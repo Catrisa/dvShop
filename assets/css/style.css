@@ -60,3 +60,10 @@ nav{
     text-align: center;
     border: none!important;
 }
+
+.titulo-tienda{
+    color: rgb(80, 80, 80);
+}
+.titulo-tienda:hover {
+    color: rgb(120, 120, 120);
+}

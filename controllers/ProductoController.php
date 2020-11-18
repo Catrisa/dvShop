@@ -28,9 +28,16 @@ class ProductoController{
         
     }
 
-    // Mostrar por categoria
     public function getForCategoria(){
-        
+
+        $id_categoria = $_GET["categoria"];
+
+        $producto = new Producto();
+        $producto->setCategoriaId($id_categoria);
+        // Obtengo los productos de esa categoria
+        $productos = $producto->getForCategoria();
+        // Muestro los productos
+        require_once __DIR__ . "/../views/producto/destacados.php";
     }
 
     public function create(){

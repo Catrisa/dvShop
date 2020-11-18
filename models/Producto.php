@@ -52,7 +52,7 @@ class Producto{
     }
 
     public function getForCategoria(){
-        $sql = "SELECT * FROM producto ORDER BY RAND() WHERE categoria_id = :categoria";
+        $sql = "SELECT * FROM producto WHERE categoria_id = :categoria ORDER BY id DESC";
         $query = $this->db->prepare($sql);
         $query->execute([
             ":categoria" => $this->categoria_id
