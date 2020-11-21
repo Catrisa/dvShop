@@ -39,9 +39,16 @@
                             <p class="card-text"><small class="text-muted">Descuento de hasta <?=rand(10, 40)?>%</small></p>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
         <?php endforeach;?>
+
+        <?php if(isset($paginador)): ?>
+            <div class="col-12 pt-4">
+                <?php echo $paginador->getPaginador() ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>

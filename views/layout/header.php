@@ -33,7 +33,7 @@
     <h2 class="display-2 text-center"><a href="<?= base_url ?>" class="titulo-tienda">Tienda</a></h2>
   </header>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light barraDeNavegacion">
     <div class="container-fluid">
 
       <?php if (!Utils::isAdmin()) : ?>
@@ -59,10 +59,12 @@
 
         </ul>
 
-        <form class="form-inline my-2 my-lg-0" action="<?=base_url.'index.php?controller=producto&action=search'?>" method="POST">
-          <input class="form-control" type="search" placeholder="Producto..." aria-label="Search" name="producto">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submitBuscador">Buscar</button>
-        </form>
+          <?php if (!Utils::isAdmin()): ?>
+            <form class="form-inline my-2 my-lg-0" action="<?=base_url.'index.php?controller=producto&action=search'?>" method="POST">
+              <input class="form-control" type="search" placeholder="Producto..." aria-label="Search" name="producto">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submitBuscador">Buscar</button>
+            </form>
+          <?php endif; ?>
 
       </div>
     </div>

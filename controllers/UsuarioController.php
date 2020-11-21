@@ -74,7 +74,7 @@ class UsuarioController {
             $_SESSION["login"]["flag"] = true;
             $_SESSION["login"]["message"] = "Bienvenido ".ucfirst($resultadoLogin->nombre)." ".ucfirst($resultadoLogin->apellido)."!" ;
 
-            header("Location: ".base_url."index.php?controller=producto&action=index");
+            header("Location: ".base_url."index.php?controller=producto&action=getAll");
         }else{
             $_SESSION["session"]["flag"] = false;
             $_SESSION["session"]["mensaje"] = "Usuario no encontrado";

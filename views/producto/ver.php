@@ -72,5 +72,9 @@
             </tbody>
         </table>
         </div>
+
+        <div class="col-12 pt-4">
+            <?php echo $paginador->getPaginador() ?>
+        </div>
     </div>
 </div>

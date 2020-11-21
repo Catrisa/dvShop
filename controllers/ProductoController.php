@@ -5,13 +5,26 @@ require_once __DIR__ . "/../helpers/Utils.php";
 
 class ProductoController{
 
+    private const RESULTADOS_POR_PAGINA = 6;
+    private const RESULTADOS_POR_PAGINA_ADMIN = 10;
+
     public function index(){
         if(Utils::isAdmin()){
             header("Location: ".base_url."index.php?controller=producto&action=getAll");
         }else{
             /* Muestro algunos productos */
             $producto = new Producto();
-            $productos = $producto->getRandom(8);
+            $cantProductos = ($producto->count())->cantidad;
+
+            // Numero de pagina actual
+            $pagina = $_GET['pagina'] ?? 1;
+
+            // Cantidad de botones de paginacion
+            $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA);
+
+            $productos = $producto->getAll(self::RESULTADOS_POR_PAGINA, $pagina);
+            $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=index"); 
+
             require_once __DIR__ . "/../views/producto/destacados.php";
         }
     }
@@ -20,12 +33,20 @@ class ProductoController{
         if( !Utils::isAdmin() ){
             Utils::notIsAdmin();
         }
+        // Numero de pagina actual
+        $pagina = $_GET['pagina'] ?? 1;
+
         // Buscar todos los productos
         $producto = new Producto();
-        $productos = $producto->getAll();
+        $cantProductos = ($producto->count())->cantidad;
+        
+        $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA_ADMIN);
+        
+        $productos = $producto->getAll(self::RESULTADOS_POR_PAGINA_ADMIN, $pagina);
+        $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=getAll");
+        
         // Mostrar lista de productos
         require_once __DIR__ . "/../views/producto/ver.php";
-        
     }
 
     public function getForCategoria(){

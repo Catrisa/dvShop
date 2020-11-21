@@ -6,6 +6,7 @@
   require_once "./config/parameters.php";
   require_once "./autoload.php";
   require_once "./helpers/Utils.php";
+  require_once "./helpers/Paginador.php";
 
   // HEADER
   require_once "views/layout/header.php";

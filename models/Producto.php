@@ -37,15 +37,17 @@ class Producto{
         $this->categoria_id = $categoria_id;
     }
 
-    public function getRandom($limit){
-        $sql = "SELECT * FROM producto ORDER BY RAND() LIMIT $limit";
-        $query = $this->db->prepare($sql);
+    public function count(){
+        $query = $this->db->prepare("SELECT COUNT(id) as cantidad FROM producto");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getAll(){
-        $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC";
+    public function getAll($cuantos, $pagina){
+        $desde = ($pagina -1) * $cuantos;
+
+        $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p ";
+        $sql .= " INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC limit $cuantos offset $desde";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
