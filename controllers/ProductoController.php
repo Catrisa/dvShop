@@ -104,12 +104,15 @@ class ProductoController{
             $file = isset($_FILES["img"]) ? $_FILES["img"] : false;
 
             if($nombre && $precio && $descripcion && $file ){
-                $nameImg = trim(str_replace(" ","_",$file["name"])); // Elimino los espacios
+
                 $img = $file["tmp_name"]; //ruta
                 $type = $file["type"];
-                $destino = __DIR__."/../uploads/images/".$nameImg;
                 
                 if( $type == "image/jpg" || $type == "image/jpeg" || $type == "image/png" ){
+
+                    //$nameImg = trim(str_replace(" ","_",$file["name"])); // Elimino los espacios
+                    $nameImg = uniqid() . "." . str_replace("image/","",$type); // Id unico 
+
                     // Creo el objeto Producto y setteo sus atributos
                     $producto = new Producto();
                     $producto->setNombre($nombre);
@@ -121,6 +124,8 @@ class ProductoController{
                     $save = $producto->save();
 
                     if($save){
+                        // Destino de la imagen
+                        $destino = __DIR__."/../uploads/images/".$nameImg;
                         move_uploaded_file($img,$destino);
                         $_SESSION["productoGuardado"] = "Se agrego un nuevo producto!";
                         header("Location: ".base_url."index.php?controller=producto&action=index");
@@ -169,10 +174,9 @@ class ProductoController{
         $file = isset($_FILES["img"]) ? $_FILES["img"] : false;
 
         // File img
-        $imgName = trim(str_replace(" ","_",$file["name"]));
         $img = $file["tmp_name"];
         $type = $file["type"];
-        $destino = __DIR__."/../uploads/images/".$imgName;
+        $imgName = ""; // Si todo se valida bien abajo piso su valor
         
         if( $id && $nombre && $precio && $descripcion && $categoriaId && $file ){
             $producto = new Producto();
@@ -182,35 +186,40 @@ class ProductoController{
             $producto->setDescripcion($descripcion);
             $producto->setCategoriaId($categoriaId);
 
-            // ~~~~~~~~~~~~~~~~ Condicional para ver si actualizar la imagen o no ~~~~~~~~~~~~~~~~
+            /* ~~~~~~~~~~~~~~~~ Condicional para ver si actualizo la imagen o no ~~~~~~~~~~~~~~~~ */
             if(empty($file["name"])){
                 // No cambio la imagen
                 $save = $producto->update(false);
             }else{
-                // Actualizar la imagen
-                echo "Hay una nueva imagen";
-                $producto->setImagen($imgName); 
-
+                // Actualizar la imagen - Hay una nueva imagen
                 if( $type == "image/jpg" || $type == "image/jpeg" || $type == "image/png" ){
-                    // Busco la imagen que tengo que borrar
-                    $productAct = new Producto();
-                    $productAct->setId($id);
-                    $productoActual = $productAct->getOne();
-                    $nameImgActual = $productoActual->imagen;
-                    //Actualizo la Base de Datos
-                    $save = $producto->update();
-                    // Borro la imagen del directorio uploads/images
-                    unlink(__DIR__."/../uploads/images/".$nameImgActual);
-                    
+                    $imgName = uniqid() . "." . str_replace("image/","",$type); // Id unico                     
                 }else{
                     $_SESSION["error"]["flag"] = true;
                     $_SESSION["error"]["message"] = "Solo se aceptan archivos .jpg, .png y .jpeg !";
                     header("Location: ".base_url."index.php?controller=producto&action=create&id=".$id);
-                }                
+                }
+
+                // Setteo el atributo para posteriormente acualizarlo
+                $producto->setImagen($imgName);          
+
+                // Busco la imagen que tengo que borrar
+                $productAct = new Producto();
+                $productAct->setId($id);
+                $productoActual = $productAct->getOne();
+                $nameImgActual = $productoActual->imagen;
+
+                //Actualizo la imagen de la Base de Datos
+                $save = $producto->update();
+                
+                // Borro la imagen del directorio uploads/images
+                unlink(__DIR__."/../uploads/images/".$nameImgActual);
             }
 
             // Si la imagen se guardo bien en la DB la guardo en la carpeta uploads
             if($save){
+                // Destino de la imagen
+                $destino = __DIR__."/../uploads/images/".$imgName;
                 move_uploaded_file($img,$destino);
                 $_SESSION["update"]["flag"] = true;
                 $_SESSION["update"]["message"] = "Se actualizo un producto!";

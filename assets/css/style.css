@@ -22,6 +22,12 @@ header div.container{
 header div.container a{
     color: rgb(120, 120, 120);
 }
+.titulo-tienda{
+    color: rgb(80, 80, 80);
+}
+.titulo-tienda:hover {
+    color: rgb(120, 120, 120);
+}
 
 /* ~~~~~~~~~~~~ NAV ~~~~~~~~~~~~ */
 nav.barraDeNavegacion{
@@ -36,6 +42,15 @@ nav.barraDeNavegacion{
     margin-right: 15px;
 }
 
+/* ~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~ */
+footer{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    color: rgb(120, 120, 120);
+    font-weight: 500;
+}
+
+
 /* INDEX DE PRODUCTO CONTROLLER */
 .title-productos{
     font-size: 30px;
@@ -43,13 +58,14 @@ nav.barraDeNavegacion{
 .precio-productos{
     font-weight: 500;
 }
-
+/* Lista de productos */
 .img-lista-productos{
     height: 150px;
     width: 100px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+/* Tabla del Administrador */
 .tr-lista-productos > td{
     border: none;
 }
@@ -59,11 +75,4 @@ nav.barraDeNavegacion{
 .tabla-lista-productos thead th{
     text-align: center;
     border: none!important;
-}
-
-.titulo-tienda{
-    color: rgb(80, 80, 80);
-}
-.titulo-tienda:hover {
-    color: rgb(120, 120, 120);
 }
