@@ -1,4 +1,6 @@
-<div class="container">
+
+
+<main class="container">
     <div class="row my-4">
 
         <?php 
@@ -79,4 +81,4 @@
             </form>
         </div><!-- FIN FORMULARIO -->
     </div>
-</div>
+</main>

@@ -1,4 +1,4 @@
-<div class="container my-5">
+<main class="container my-5">
 
     <?php 
     if( isset($_SESSION["login"]) && $_SESSION["login"]["flag"] ){
@@ -51,4 +51,4 @@
             </div>
         <?php endif; ?>
     </div>
-</div>
+</main>

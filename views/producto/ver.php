@@ -1,5 +1,5 @@
 
-<div class="container my-3">
+<main class="container my-3">
     <div class="row ">
         <?php if( isset($_SESSION["productoGuardado"]) ){
             echo '<div class="col-12">';
@@ -77,4 +77,4 @@
             <?php echo $paginador->getPaginador() ?>
         </div>
     </div>
-</div>
+</main>

@@ -1,19 +1,17 @@
-
-
 <main class="container">
-<?php 
-if( isset($_SESSION["registro"]) ){
-    if($_SESSION["registro"]["flag"]){
-        echo Utils::alert("Se a registrado con exito");
-    }else{
-        echo Utils::alert("Error!",$_SESSION["registro"]["mensaje"],"danger");
+    <?php
+    if (isset($_SESSION["registro"])) {
+        if ($_SESSION["registro"]["flag"]) {
+            echo Utils::alert("Se a registrado con exito");
+        } else {
+            echo Utils::alert("Error!", $_SESSION["registro"]["mensaje"], "danger");
+        }
+        unset($_SESSION["registro"]);
     }
-    unset($_SESSION["registro"]);
-}
-?>
+    ?>
     <div class="row my-5">
         <div class="col-md-6 mx-auto p-0">
-            <form action="<?=base_url.'index.php?controller=usuario&action=save'?>" method="POST" class="card" >
+            <form action="<?= base_url . 'index.php?controller=usuario&action=save' ?>" method="POST" class="card">
 
                 <div class="card-header">
                     <h1 class="display-4 text-center">Registrate</h1>
@@ -22,14 +20,14 @@ if( isset($_SESSION["registro"]) ){
                 <div class="card-body row">
                     <div class="col-md-6">
                         <div class="form-group">
-                        <label for="name">Nombre*</label>
-                        <input type="text" name="nombre" id="name" class="form-control" placeholder="Ingrese su nombre">
+                            <label for="name">Nombre*</label>
+                            <input type="text" name="nombre" id="name" class="form-control" placeholder="Ingrese su nombre">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email*</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Ingrese su email">
-                        </div>    
+                        </div>
                     </div>
 
                     <div class="col-md-6">
