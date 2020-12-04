@@ -8,39 +8,28 @@
   require_once "./helpers/Utils.php";
   require_once "./helpers/Paginador.php";
 
-  // HEADER
-  require_once "views/layout/header.php";
 ?>
 
   <?php
-
-  if (isset($_GET["controller"])) {
-    $nombre_controlador = $_GET["controller"] . "Controller";
-  }else{
-    $nombre_controlador = controller_default;
-  }
-
-  if (class_exists($nombre_controlador)) {
-    $controlador = new $nombre_controlador();
-
-    if (isset($_GET["action"]) && method_exists($controlador, $_GET["action"])) {
-      $action = $_GET["action"];
-      $controlador->$action();
-    } elseif (!isset($_GET["controller"]) && !isset($_GET["action"])) {
-      $action_default = action_default;
-      $controlador->$action_default();
-    } else {
-      echo "El action que estas buscando no existe";
+    if (isset($_GET["controller"])) {
+      $nombre_controlador = $_GET["controller"] . "Controller";
+    }else{
+      $nombre_controlador = controller_default;
     }
-  } else {
-    echo "El controlador que estas buscando no existe";
-  }
+
+    if (class_exists($nombre_controlador)) {
+      $controlador = new $nombre_controlador();
+
+      if (isset($_GET["action"]) && method_exists($controlador, $_GET["action"])) {
+        $action = $_GET["action"];
+        $controlador->$action();
+      } elseif (!isset($_GET["controller"]) && !isset($_GET["action"])) {
+        $action_default = action_default;
+        $controlador->$action_default();
+      } else {
+        echo "El action que estas buscando no existe";
+      }
+    } else {
+      echo "El controlador que estas buscando no existe";
+    }
   ?>
-
-
-
-
-<?php 
-  // FOOTER
-  require_once "views/layout/footer.php" 
-?>
