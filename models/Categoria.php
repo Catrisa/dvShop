@@ -29,6 +29,16 @@ class Categoria {
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    public function getOne(){
+        $sql = "SELECT * FROM categoria WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            ":id" => $this->id
+        ]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
     public function save(){
         $sql = "INSERT INTO categoria VALUES(null, :nombre)";

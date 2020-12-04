@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . "/../models/Producto.php";
+require_once __DIR__ . "/../models/Categoria.php";
 require_once __DIR__ . "/../helpers/Utils.php";
 
 class ProductoController{
@@ -52,11 +53,17 @@ class ProductoController{
     public function getForCategoria(){
 
         $id_categoria = $_GET["categoria"];
+        // Obtengo el nombre de la categoria por el ID
+        $categoria = new Categoria();
+        $categoria->setId($id_categoria);
+        $nombreCategoria = $categoria->getOne();
 
         $producto = new Producto();
         $producto->setCategoriaId($id_categoria);
+
         // Obtengo los productos de esa categoria
         $productos = $producto->getForCategoria();
+
         // Muestro los productos
         require_once __DIR__ . "/../views/producto/destacados.php";
     }

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     
-    <title>Productos</title>
+    <title><?= isset($nombreCategoria) && $nombreCategoria ? ucfirst($nombreCategoria->nombre) : "Productos" ?></title>
     
     <!-- META -->
     <?php require_once __DIR__ . "/../layout/meta.php" ?>
