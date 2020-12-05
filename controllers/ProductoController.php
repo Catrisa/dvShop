@@ -56,6 +56,9 @@ class ProductoController{
     }
 
     public function getOne(){
+        if( Utils::isAdmin() ){
+            header("location: ".base_url);
+        }
 
         $id_producto = $_GET["productoId"];
 
@@ -71,6 +74,9 @@ class ProductoController{
     }
 
     public function getForCategoria(){
+        if( Utils::isAdmin() ){
+            header("location: ".base_url);
+        }
 
         $id_categoria = $_GET["categoria"];
 
@@ -104,21 +110,43 @@ class ProductoController{
     }
 
     public function search(){
-        if( isset($_POST["submitBuscador"]) ){
-            $title = "Buscador";
-            
-            // Producto a buscar
-            $nombreProducto = $_POST["producto"];
-
-            $producto = new Producto();
-            $producto->setNombre($nombreProducto);
-            $productos = $producto->search();
-            
-            $buscador = true;
-            
-            require_once __DIR__ . "/../views/producto/destacados.php";
-            
+        if( Utils::isAdmin() ){
+            header("location: ".base_url);
         }
+        if( isset($_POST["submitBuscador"]) && !isset($_GET["buscar"])){
+            $nombreProducto = $_POST["producto"];
+            header("Location: ".base_url."index.php?controller=producto&action=search&buscar=".$nombreProducto);
+        }else if( !isset($_POST["submitBuscador"]) && !isset($_GET["buscar"]) ){
+            header("Location: ".base_url);
+        }
+
+        $title = "Buscador";
+        
+        // Id del producto a buscar
+        $nombreProducto = $_GET["buscar"];
+
+        $producto = new Producto();
+        $producto->setNombre($nombreProducto);
+        
+        // Total de productos obtenidos
+        $cantProductos = count($producto->search());
+
+        // Numero de pagina actual
+        $pagina = $_GET['pagina'] ?? 1;
+        
+        // Cantidad de botones de paginacion
+        $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA);
+
+        // Obtengo los productos
+        $productos = $producto->search(self::RESULTADOS_POR_PAGINA, $pagina);
+
+        // Creo el paginador
+        $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=search&buscar="."$nombreProducto");
+
+        $buscador = true;
+        
+        require_once __DIR__ . "/../views/producto/destacados.php";
+            
     }
 
     public function create(){

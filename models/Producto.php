@@ -51,20 +51,29 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getAll($cuantos, $pagina){
-        $desde = ($pagina -1) * $cuantos;
-
+    public function getAll($cuantos = false, $pagina = false){
         $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p ";
-        $sql .= " INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC limit $cuantos offset $desde";
+        $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC";
+
+        if($cuantos && $pagina){
+            $desde = ($pagina -1) * $cuantos;
+            $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p ";
+            $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC limit $cuantos offset $desde";
+        }
+
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getForCategoria($cuantos, $pagina){
-        $desde = ($pagina -1) * $cuantos;
+    public function getForCategoria($cuantos = false, $pagina = false){
+        $sql = "SELECT * FROM producto WHERE categoria_id = :categoria";
 
-        $sql = "SELECT * FROM producto WHERE categoria_id = :categoria limit $cuantos offset $desde";
+        if($cuantos && $pagina){
+            $desde = ($pagina -1) * $cuantos;
+            $sql = "SELECT * FROM producto WHERE categoria_id = :categoria limit $cuantos offset $desde";
+        }
+
         $query = $this->db->prepare($sql);
         $query->execute([
             ":categoria" => $this->categoria_id
@@ -81,8 +90,14 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function search(){
+    public function search($cuantos = false, $pagina = false){
         $sql = "SELECT * FROM producto WHERE nombre LIKE '{$this->nombre}%' ";
+        
+        if( $cuantos && $pagina){
+            $desde = ($pagina -1) * $cuantos;
+            $sql = "SELECT * FROM producto WHERE nombre LIKE '{$this->nombre}%' limit $cuantos offset $desde";
+        }
+        
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
