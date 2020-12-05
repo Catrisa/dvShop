@@ -21,6 +21,7 @@ header div.container{
 }
 header div.container a{
     color: rgb(120, 120, 120);
+    font-size: 25px;
 }
 .titulo-tienda{
     color: rgb(80, 80, 80);
@@ -28,7 +29,9 @@ header div.container a{
 .titulo-tienda:hover {
     color: rgb(120, 120, 120);
 }
-
+.fa-sign-out-alt{
+    font-size: 20px;
+}
 /* ~~~~~~~~~~~~ NAV ~~~~~~~~~~~~ */
 nav.barraDeNavegacion{
     position: sticky!important;

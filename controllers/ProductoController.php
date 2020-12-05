@@ -13,6 +13,7 @@ class ProductoController{
         if(Utils::isAdmin()){
             header("Location: ".base_url."index.php?controller=producto&action=getAll");
         }else{
+            $title = "Productos";
             /* Muestro algunos productos */
             $producto = new Producto();
             $cantProductos = ($producto->count())->cantidad;
@@ -34,6 +35,7 @@ class ProductoController{
         if( !Utils::isAdmin() ){
             Utils::notIsAdmin();
         }
+        $title = "Lista de productos";
         // Numero de pagina actual
         $pagina = $_GET['pagina'] ?? 1;
 
@@ -53,10 +55,11 @@ class ProductoController{
     public function getForCategoria(){
 
         $id_categoria = $_GET["categoria"];
-        // Obtengo el nombre de la categoria por el ID
+        // Obtengo el nombre de la categoria por el ID para el title
         $categoria = new Categoria();
         $categoria->setId($id_categoria);
         $nombreCategoria = $categoria->getOne();
+        $title = ucfirst($nombreCategoria->nombre);
 
         $producto = new Producto();
         $producto->setCategoriaId($id_categoria);
@@ -70,6 +73,9 @@ class ProductoController{
 
     public function search(){
         if( isset($_POST["submitBuscador"]) ){
+            $title = "Buscador";
+            
+            // Producto a buscar
             $nombreProducto = $_POST["producto"];
 
             $producto = new Producto();
