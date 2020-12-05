@@ -55,6 +55,21 @@ class ProductoController{
         require_once __DIR__ . "/../views/producto/ver.php";
     }
 
+    public function getOne(){
+
+        $id_producto = $_GET["productoId"];
+
+        $objProducto = new Producto();
+        $objProducto->setId($id_producto);
+        $producto = $objProducto->getOne();
+        
+        $title = ucfirst($producto->nombre);
+
+        // Vista
+        require_once __DIR__ . "/../views/producto/producto.php";
+
+    }
+
     public function getForCategoria(){
 
         $id_categoria = $_GET["categoria"];

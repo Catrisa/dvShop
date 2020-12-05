@@ -11,7 +11,9 @@ textarea {
     resize: none;
 }
 
-/* ~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header h2{
     padding: 15px 0;
 }
@@ -32,7 +34,10 @@ header div.container a{
 .fa-sign-out-alt{
     font-size: 20px;
 }
-/* ~~~~~~~~~~~~ NAV ~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ NAV ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 nav.barraDeNavegacion{
     position: sticky!important;
     top: 0;
@@ -45,7 +50,9 @@ nav.barraDeNavegacion{
     margin-right: 15px;
 }
 
-/* ~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 footer{
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -53,22 +60,33 @@ footer{
     font-weight: 500;
 }
 
-
-/* INDEX DE PRODUCTO CONTROLLER */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ PAGINA DE PRODUCTOS ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .title-productos{
     font-size: 30px;
 }
 .precio-productos{
     font-weight: 500;
 }
-/* Lista de productos */
 .img-lista-productos{
     height: 150px;
     width: 100px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-/* Tabla del Administrador */
+.enlaceAProducto{
+    color: rgb(30,30,30);
+}
+.enlaceAProducto:hover{
+    color: rgb(110,110,110);
+}
+.card-body-producto{
+    height: 100%;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ PAGINA DEL ADMINISTRADOR ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .tr-lista-productos > td{
     border: none;
 }
@@ -78,4 +96,56 @@ footer{
 .tabla-lista-productos thead th{
     text-align: center;
     border: none!important;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~ PAGINA DE DESCRIPCION DE PRODUCTO ~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.imgProducto{
+    width: 350px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.mediosDePagoProducto{
+    list-style: none;
+    display: flex;
+}
+.tarjetaBancaria{
+    width: 50px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+.text-tallas-disponibles{
+    margin-bottom: 5px;
+    color: rgb(100, 100, 100);
+    font-weight: 500;
+}
+.contenedor-Tallas{
+    display: flex;
+}
+.contenedor-Tallas > div{
+    color: rgb(100, 100, 100);
+    border: 2px solid rgb(100, 100, 100);
+    padding: 5px 15px;
+    margin-right: 10px;
+}
+.contenedor-Tallas > div:last-child{
+    border: 2px solid #ddd;
+    color:  rgb(200, 200, 200);
+}
+.boton-producto{
+    border-radius: 0;
+    padding: 10px 0;
+}
+.titulo-producto{
+    font-weight: 350;
+}
+.precio-producto{
+    font-size: 40px;
+}
+.title-descripcion-producto{
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    margin-bottom: 5px;
+    font-size: 20px;
 }

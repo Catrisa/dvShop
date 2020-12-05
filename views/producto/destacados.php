@@ -38,9 +38,7 @@
             echo '<h3 class="mb-4 display-4 pb-3">'.$titulo.'</h3>';
         }
         ?>
-    
         
-    
         <div class="row">
             <?php foreach($productos as $producto):?>
             <div class="col-sm-6 ">
@@ -50,15 +48,23 @@
                             <img src="<?=base_url.'uploads/images/'.$producto->imagen?>" class="card-img img-fluid" height="200" alt="...">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
-                                <h2 class="card-title display-4 title-productos"><?php if(strlen($producto->nombre)<22){
-                                        echo ucfirst($producto->nombre);
-                                    }else{
-                                        echo substr(ucfirst($producto->nombre),0,22)."...";
-                                    }?></h2>
-                                <p class="card-text precio-productos">$<?=$producto->precio?></p>
-                                <p class="card-text"><?=substr(ucfirst($producto->descripcion), 0, 140)."..."?></p>
-                                <p class="card-text"><small class="text-muted">Descuento de hasta <?=rand(10, 40)?>%</small></p>
+                            <div class="card-body card-body-producto d-flex align-content-between flex-wrap">
+                                <div>
+                                    <a href="<?=base_url?>index.php?controller=producto&action=getOne&productoId=<?=$producto->id?>" class="enlaceAProducto">
+                                        <h2 class="card-title display-4 title-productos">
+                                            <?php if(strlen($producto->nombre)<22){
+                                                echo ucfirst($producto->nombre);
+                                            }else{
+                                                echo substr(ucfirst($producto->nombre),0,20)."...";
+                                            }?>
+                                        </h2>
+                                        <p class="card-text precio-productos">$<?=$producto->precio?></p>
+                                        <p class="card-text"><?=substr(ucfirst($producto->descripcion), 0, 140)."..."?></p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p class="card-text"><small class="text-muted">Descuento de hasta <?=rand(10, 40)?>%</small></p>
+                                </div>
                             </div>
                         </div>
                         
