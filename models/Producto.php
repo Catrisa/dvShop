@@ -43,6 +43,14 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function countForCategoria(){
+        $query = $this->db->prepare("SELECT COUNT(id) as cantidad FROM producto WHERE categoria_id = :categoria");
+        $query->execute([
+            ":categoria" => $this->categoria_id
+        ]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getAll($cuantos, $pagina){
         $desde = ($pagina -1) * $cuantos;
 
@@ -53,8 +61,10 @@ class Producto{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getForCategoria(){
-        $sql = "SELECT * FROM producto WHERE categoria_id = :categoria ORDER BY id DESC";
+    public function getForCategoria($cuantos, $pagina){
+        $desde = ($pagina -1) * $cuantos;
+
+        $sql = "SELECT * FROM producto WHERE categoria_id = :categoria limit $cuantos offset $desde";
         $query = $this->db->prepare($sql);
         $query->execute([
             ":categoria" => $this->categoria_id

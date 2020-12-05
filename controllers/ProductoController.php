@@ -24,7 +24,10 @@ class ProductoController{
             // Cantidad de botones de paginacion
             $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA);
 
+            // Obtengo los productos
             $productos = $producto->getAll(self::RESULTADOS_POR_PAGINA, $pagina);
+            
+            // Creo el paginador
             $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=index"); 
 
             require_once __DIR__ . "/../views/producto/destacados.php";
@@ -55,17 +58,31 @@ class ProductoController{
     public function getForCategoria(){
 
         $id_categoria = $_GET["categoria"];
+
         // Obtengo el nombre de la categoria por el ID para el title
         $categoria = new Categoria();
         $categoria->setId($id_categoria);
         $nombreCategoria = $categoria->getOne();
-        $title = ucfirst($nombreCategoria->nombre);
-
+        $title = ucfirst($nombreCategoria->nombre); // title
+        
+        // Obtengo los productos de esa categoria
         $producto = new Producto();
         $producto->setCategoriaId($id_categoria);
+        
+        // Total de productos obtenidos
+        $cantProductos = ($producto->countForCategoria())->cantidad;
+        
+        // Numero de pagina actual
+        $pagina = $_GET['pagina'] ?? 1;
 
-        // Obtengo los productos de esa categoria
-        $productos = $producto->getForCategoria();
+        // Cantidad de botones de paginacion
+        $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA);
+
+        // Obtengo los productos
+        $productos = $producto->getForCategoria(self::RESULTADOS_POR_PAGINA, $pagina);
+        
+        // Creo el paginador
+        $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=getForCategoria&categoria="."$id_categoria"); 
 
         // Muestro los productos
         require_once __DIR__ . "/../views/producto/destacados.php";
