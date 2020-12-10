@@ -13,6 +13,9 @@ class ProductoController{
         if(Utils::isAdmin()){
             header("Location: ".base_url."index.php?controller=producto&action=getAll");
         }else{
+
+            $order = $_GET["order"] ?? "ASC";
+            
             $title = "Productos";
             /* Muestro algunos productos */
             $producto = new Producto();
@@ -25,7 +28,7 @@ class ProductoController{
             $cantBotonesPaginacion = ceil($cantProductos / self::RESULTADOS_POR_PAGINA);
 
             // Obtengo los productos
-            $productos = $producto->getAll(self::RESULTADOS_POR_PAGINA, $pagina);
+            $productos = $producto->getAll(self::RESULTADOS_POR_PAGINA, $pagina, $order);
             
             // Creo el paginador
             $paginador = new Paginator($cantBotonesPaginacion, base_url."index.php?controller=producto&action=index"); 

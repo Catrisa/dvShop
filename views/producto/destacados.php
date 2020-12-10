@@ -15,6 +15,20 @@
     
     <!-- HEADER -->
     <?php require_once __DIR__ ."/../layout/header.php" ?>
+
+    <!-- BUSCADOR -->
+    <?php if($title == 'Productos'):?>
+        <div class="container text-center my-3">
+            <?php 
+                if( isset($_GET["order"]) && $_GET["order"] == "ASC" || !isset($_GET["order"])){
+                    $order = "DESC";
+                } elseif( isset($_GET["order"]) && $_GET["order"] == "DESC" ){
+                    $order = "ASC";
+                }
+            ?>
+            <a href="<?=base_url?>index.php?controller=producto&action=index&order=<?=$order?>" class="btn btn-secondary">Cambiar orden de busqueda</a>
+        </div>
+    <?php endif; ?>
     
     <!-- NAV -->
     <?php require_once __DIR__ ."/../layout/nav.php" ?>

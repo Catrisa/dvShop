@@ -51,14 +51,14 @@ class Producto{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getAll($cuantos = false, $pagina = false){
+    public function getAll($cuantos = false, $pagina = false, $order = "ASC"){
         $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p ";
-        $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC";
+        $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id $order";
 
         if($cuantos && $pagina){
             $desde = ($pagina -1) * $cuantos;
             $sql = "SELECT p.*, c.nombre as 'categoria' FROM producto p ";
-            $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id DESC limit $cuantos offset $desde";
+            $sql .= "INNER JOIN categoria c ON c.id = p.categoria_id ORDER BY id $order limit $cuantos offset $desde";
         }
 
         $query = $this->db->prepare($sql);
