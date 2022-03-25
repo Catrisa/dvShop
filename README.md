@@ -32,20 +32,22 @@ git clone https://github.com/SaulZarate/DV-Produccion-web.git
 
 ## Secciones de la aplicación
 
+### Página principal
+![Pagina_principal]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/home.jpg )
+### Buscador
+![Pagina_principal]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/buscador.jpg )
+### Categoria (remeras)
+![Buscador_de_usuarios]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/categoria_remeras.jpg )
+### Detalle del producto
+![Detalle_de_publicacion]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/detalle_producto.jpg )
+### Login
+![Publicaciones_favoritas]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/login.jpg )
+### Registro
+![Configuracion_del_perfil]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/registro.jpg )
 ### Página principal - Admin
 ![Pagina_principal]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/admin-home.jpg )
 ### Modificar producto - Admin
 ![Pagina_principal]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/admin-modificar_producto.jpg )
-### Buscador
-![Pagina_principal]( https://github.com/SaulZarate/DV-Produccion-web/blob/main/vistas_del_proyecto/buscador.jpg )
-### Categoria (remeras)
-![Buscador_de_usuarios]( https://github.com/SaulZarate/RedSocialFotos-Laravel/blob/main/vistas_del_proyecto/categoria_remeras.jpg )
-### Detalle del producto
-![Detalle_de_publicacion]( https://github.com/SaulZarate/RedSocialFotos-Laravel/blob/main/vistas_del_proyecto/detalle_producto.jpg )
-### Login
-![Publicaciones_favoritas]( https://github.com/SaulZarate/RedSocialFotos-Laravel/blob/main/vistas_del_proyecto/login.jpg )
-### Registro
-![Configuracion_del_perfil]( https://github.com/SaulZarate/RedSocialFotos-Laravel/blob/main/vistas_del_proyecto/registro.jpg )
 
 ## Construido con 🛠️
 
