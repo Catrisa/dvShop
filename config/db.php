@@ -9,7 +9,7 @@ class DataBase {
 
             $baseDatos = "dv-produccion_web-tienda";
             $host = "localhost";
-            $port = 3308;
+            $port = 3306;
             $user = "root";
             $password = "";
         

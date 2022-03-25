@@ -1,6 +1,6 @@
 <?php 
-
 require_once __DIR__ . "/../models/Usuario.php";
+require_once __DIR__ . "/../helpers/Utils.php";
 
 class UsuarioController {
 
@@ -74,7 +74,11 @@ class UsuarioController {
             $_SESSION["login"]["flag"] = true;
             $_SESSION["login"]["message"] = "Bienvenido ".ucfirst($resultadoLogin->nombre)." ".ucfirst($resultadoLogin->apellido)."!" ;
 
-            header("Location: ".base_url."index.php?controller=producto&action=getAll");
+            if(Utils::isAdmin()){
+                header("Location: ".base_url."index.php?controller=producto&action=getAll");
+            }else{
+                header("Location: ".base_url."index.php?controller=producto&action=index");
+            }
         }else{
             $_SESSION["session"]["flag"] = false;
             $_SESSION["session"]["mensaje"] = "Usuario no encontrado";

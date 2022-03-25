@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 a{
@@ -14,14 +15,21 @@ textarea {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+header{
+    margin-top: 0;
+}
 header h2{
     padding: 15px 0;
 }
-header div.container{
+header div{
     text-align: right;
     margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-header div.container a{
+header div a{
     color: rgb(120, 120, 120);
     font-size: 25px;
 }
@@ -148,4 +156,4 @@ footer{
     color: rgb(100, 100, 100);
     margin-bottom: 5px;
     font-size: 20px;
-}
+} 
