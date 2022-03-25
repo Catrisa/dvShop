@@ -7,9 +7,9 @@ class DataBase {
     public static function conexion(){
         try{
 
-            $baseDatos = "dv-produccion_web-tienda";
+            $baseDatos = "nameDataBase";
             $host = "localhost";
-            $port = 3306;
+            $port = 3308;
             $user = "root";
             $password = "";
         
