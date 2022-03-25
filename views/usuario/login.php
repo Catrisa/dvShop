@@ -42,17 +42,17 @@
                           <input type="email" name="email" id="email" class="form-control" placeholder="Ingrese su email" >
                         </div>
     
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-3">
                           <label for="password">Contraseña</label>
                           <input type="password" name="password" id="password" class="form-control" placeholder="******" >
                         </div>
     
-                        <button type="submit" class="btn btn-success btn-block" name="submitIngresar">INGRESAR</button>
-                        
                         <!-- ENLACE PARA REGISTRARSE -->
-                        <!-- <div class="mt-3">
-                            <a href="<?=base_url.'index.php?controller=usuario&action=registro'?>" class="text-secondary font-weight-bold">Registrarse</a>
-                        </div> -->
+                        <div class="mt-0 mb-3">
+                            <a href="<?=base_url.'index.php?controller=usuario&action=registro'?>" class="text-info">Registrarse</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block" name="submitIngresar">INGRESAR</button>
                         
                     </div>
     

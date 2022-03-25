@@ -95,7 +95,7 @@ class Producto{
         
         if( $cuantos && $pagina){
             $desde = ($pagina -1) * $cuantos;
-            $sql = "SELECT * FROM producto WHERE nombre LIKE '{$this->nombre}%' limit $cuantos offset $desde";
+            $sql = "SELECT * FROM producto WHERE nombre LIKE '%{$this->nombre}%' limit $cuantos offset $desde";
         }
         
         $query = $this->db->prepare($sql);

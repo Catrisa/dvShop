@@ -56,7 +56,7 @@
             }
             ?>
             <div class="col-12 mb-3">
-                <h1 class="display-3 ">Productos</h1>
+                <h1 class="display-4">Productos</h1>
             </div>
     
             <div class="col-md-2 mb-4">
