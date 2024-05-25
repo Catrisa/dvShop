@@ -1,15 +1,22 @@
 <?php 
 
-
+/*
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crudposts
+DB_USERNAME=root
+DB_PASSWORD=
+*/
 
 class DataBase {
 
     public static function conexion(){
         try{
 
-            $baseDatos = "nameDataBase";
-            $host = "localhost";
-            $port = 3308;
+            $baseDatos = "dvshop";
+            $host = "127.0.0.1";
+            $port = 3306;
             $user = "root";
             $password = "";
         

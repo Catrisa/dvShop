@@ -25,21 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dvshop_categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
-DROP TABLE IF EXISTS `dvshop_categoria`;
-CREATE TABLE IF NOT EXISTS `dvshop_categoria` (
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE IF NOT EXISTS `categoria` (
   `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `dvshop_categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `dvshop_categoria` (`id`, `nombre`) VALUES
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'manga corta'),
 (2, 'manga larga'),
 (5, 'bermuda'),
@@ -54,11 +54,11 @@ INSERT INTO `dvshop_categoria` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dvshop_producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `dvshop_producto`;
-CREATE TABLE IF NOT EXISTS `dvshop_producto` (
+DROP TABLE IF EXISTS `producto`;
+CREATE TABLE IF NOT EXISTS `producto` (
   `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `precio` float NOT NULL,
@@ -70,10 +70,10 @@ CREATE TABLE IF NOT EXISTS `dvshop_producto` (
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `dvshop_producto`
+-- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `dvshop_producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`, `categoria_id`) VALUES
+INSERT INTO `producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`, `categoria_id`) VALUES
 (1, 'Bermuda denim atenea', 2978, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', '5fcae63fe3bba.jpeg', 5),
 (2, 'bermuda corte chino solano', 4121, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', 'bermuda-02.jpg', 5),
 (3, 'bermuda 5 bolsillos victoria beach', 3412, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', 'bermuda-03.jpg', 5),
@@ -114,8 +114,8 @@ INSERT INTO `dvshop_producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `dvshop_usuario`;
-CREATE TABLE IF NOT EXISTS `dvshop_usuario` (
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -126,10 +126,10 @@ CREATE TABLE IF NOT EXISTS `dvshop_usuario` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `dvshop_usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `dvshop_usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol`) VALUES
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol`) VALUES
 (7, 'saul', 'zarate', 'saul@gmail.com', '$2y$10$aos9BUmBqWVIHEB2yaqvA.q29PG3FLBfeb/hy/y9onGSyPjSoU4Fu', 'admin');
 
 --
@@ -139,8 +139,8 @@ INSERT INTO `dvshop_usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol
 --
 -- Filtros para la tabla `producto`
 --
-ALTER TABLE `dvshop_producto`
-  ADD CONSTRAINT `fk_ropa_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `dvshop_categoria` (`id`);
+ALTER TABLE `producto`
+  ADD CONSTRAINT `fk_ropa_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

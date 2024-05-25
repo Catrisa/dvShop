@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 22-12-2020 a las 17:17:22
--- Versión del servidor: 8.0.18
--- Versión de PHP: 7.4.0
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-05-2024 a las 21:46:20
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,27 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dv-produccion_web-tienda`
+-- Base de datos: `dvshop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dvshop_categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
-DROP TABLE IF EXISTS `dvshop_categoria`;
-CREATE TABLE IF NOT EXISTS `dvshop_categoria` (
-  `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+CREATE TABLE `categoria` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `dvshop_categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `dvshop_categoria` (`id`, `nombre`) VALUES
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'manga corta'),
 (2, 'manga larga'),
 (5, 'bermuda'),
@@ -54,26 +51,23 @@ INSERT INTO `dvshop_categoria` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dvshop_producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `dvshop_producto`;
-CREATE TABLE IF NOT EXISTS `dvshop_producto` (
-  `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `producto` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `precio` float NOT NULL,
-  `descripcion` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `descripcion` text NOT NULL,
   `imagen` varchar(200) NOT NULL,
-  `categoria_id` tinyint(3) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_ropa_categoria` (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+  `categoria_id` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `dvshop_producto`
+-- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `dvshop_producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`, `categoria_id`) VALUES
+INSERT INTO `producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`, `categoria_id`) VALUES
 (1, 'Bermuda denim atenea', 2978, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', '5fcae63fe3bba.jpeg', 5),
 (2, 'bermuda corte chino solano', 4121, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', 'bermuda-02.jpg', 5),
 (3, 'bermuda 5 bolsillos victoria beach', 3412, 'Obcaecati, corrupti repudiandae. Odit exercitationem repellendus quidem amet rem nostrum recusandae? Ratione praesentium provident dignissimos et quam, voluptatibus perspiciatis eligendi earum illo voluptatum repudiandae distinctio culpa cupiditate recusandae ut fugiat!', 'bermuda-03.jpg', 5),
@@ -114,23 +108,67 @@ INSERT INTO `dvshop_producto` (`id`, `nombre`, `precio`, `descripcion`, `imagen`
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `dvshop_usuario`;
-CREATE TABLE IF NOT EXISTS `dvshop_usuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `clave` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `rol` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `clave` varchar(255) NOT NULL,
+  `rol` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `dvshop_usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `dvshop_usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol`) VALUES
-(7, 'saul', 'zarate', 'saul@gmail.com', '$2y$10$aos9BUmBqWVIHEB2yaqvA.q29PG3FLBfeb/hy/y9onGSyPjSoU4Fu', 'admin');
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol`) VALUES
+(7, 'saul', 'zarate', 'saul@gmail.com', '$2y$10$aos9BUmBqWVIHEB2yaqvA.q29PG3FLBfeb/hy/y9onGSyPjSoU4Fu', 'admin'),
+(8, 'Carlos', 'Trigo', 'catrisat@gmail.com', '$2y$10$0vXa/vGNAQdhFay7KvKZNO5RTDk2THzmm4rBBZc5lm2wZja/sUQ6m', 'admin');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_ropa_categoria` (`categoria_id`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -139,8 +177,8 @@ INSERT INTO `dvshop_usuario` (`id`, `nombre`, `apellido`, `email`, `clave`, `rol
 --
 -- Filtros para la tabla `producto`
 --
-ALTER TABLE `dvshop_producto`
-  ADD CONSTRAINT `fk_ropa_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `dvshop_categoria` (`id`);
+ALTER TABLE `producto`
+  ADD CONSTRAINT `fk_ropa_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
